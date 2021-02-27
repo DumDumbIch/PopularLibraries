@@ -1,7 +1,6 @@
 package com.dumdumbich.popularlibraries.lesson_1.ui
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import com.dumdumbich.popularlibraries.databinding.ActivityMainBinding
