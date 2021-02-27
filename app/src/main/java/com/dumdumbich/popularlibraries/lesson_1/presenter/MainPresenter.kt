@@ -17,7 +17,6 @@ class MainPresenter(val view: ICountersView) {
         model.clearCounter1()
         model.clearCounter2()
         model.clearCounter3()
-        updateCounters()
     }
 
     fun clickCounter1() {
