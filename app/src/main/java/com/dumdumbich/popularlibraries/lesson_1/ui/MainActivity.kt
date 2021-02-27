@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), ICountersView {
     }
 
     private fun initView() {
-        presenter.initCounters()
+        presenter.clearCounters()
         ui.btnCounter1.setOnClickListener { presenter.clickCounter1() }
         ui.btnCounter2.setOnClickListener { presenter.clickCounter2() }
         ui.btnCounter3.setOnClickListener { presenter.clickCounter3() }

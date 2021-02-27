@@ -7,10 +7,17 @@ class MainPresenter(val view: ICountersView) {
 
     private val model = CountersModel()
 
-    fun initCounters(){
+    fun updateCounters(){
         view.setTextButtonCounter1(model.counter1.toString())
         view.setTextButtonCounter2(model.counter2.toString())
         view.setTextButtonCounter3(model.counter3.toString())
+    }
+
+    fun clearCounters() {
+        model.clearCounter1()
+        model.clearCounter2()
+        model.clearCounter3()
+        updateCounters()
     }
 
     fun clickCounter1() {
