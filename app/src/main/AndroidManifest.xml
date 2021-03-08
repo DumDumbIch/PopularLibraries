@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PopularLibraries">
         <activity
-            android:name=".lesson_2.ui.LessonTwoActivity"
+            android:name=".lesson_2.ui.MainActivity"
             android:label="@string/title_activity_lesson_two">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

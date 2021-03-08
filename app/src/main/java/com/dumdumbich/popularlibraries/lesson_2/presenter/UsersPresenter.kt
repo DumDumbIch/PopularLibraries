@@ -1,0 +1,42 @@
+package com.dumdumbich.popularlibraries.lesson_2.presenter
+
+import com.dumdumbich.popularlibraries.lesson_2.model.GitHubUsersRepo
+import com.dumdumbich.popularlibraries.lesson_2.model.entity.GitHubUser
+import com.dumdumbich.popularlibraries.lesson_2.presenter.list.IUsersListPresenter
+import com.dumdumbich.popularlibraries.lesson_2.view.IUsersView
+import com.dumdumbich.popularlibraries.lesson_2.view.list.IUserItemView
+import moxy.MvpPresenter
+
+class UsersPresenter(private val usersRepo: GitHubUsersRepo) : MvpPresenter<IUsersView>() {
+
+    class UsersListPresenter : IUsersListPresenter {
+
+        val users = mutableListOf<GitHubUser>()
+
+        override var itemClickListener: ((IUserItemView) -> Unit)? = null
+
+        override fun bindView(view: IUserItemView) {
+            val user = users[view.pos]
+            view.setLogin(user.login)
+        }
+
+        override fun getCount() = users.size
+
+    }
+
+    val usersListPresenter = UsersListPresenter()
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        viewState.init()
+        loadData()
+    }
+
+    private fun loadData() {
+        val users = usersRepo.getUsers()
+        usersListPresenter.users.clear()
+        usersListPresenter.users.addAll(users)
+        viewState.updateList()
+    }
+
+}
