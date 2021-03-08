@@ -4,7 +4,7 @@ import com.dumdumbich.popularlibraries.lesson_2.model.CountersModel
 import com.dumdumbich.popularlibraries.lesson_2.view.ICountersView
 import moxy.MvpPresenter
 
-class LessonTwoPresenter(private val model: CountersModel): MvpPresenter<ICountersView>() {
+class LessonTwoPresenter(private val model: CountersModel) : MvpPresenter<ICountersView>() {
 
     private fun getCounter1() = model.counter1
     private fun getCounter2() = model.counter2
@@ -14,7 +14,12 @@ class LessonTwoPresenter(private val model: CountersModel): MvpPresenter<ICounte
     private fun incCounter2() = ++model.counter2
     private fun incCounter3() = ++model.counter3
 
-    fun initCounters() {
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        initCounters()
+    }
+
+    private fun initCounters() {
         viewState.setTextButtonCounter1(getCounter1().toString())
         viewState.setTextButtonCounter2(getCounter2().toString())
         viewState.setTextButtonCounter3(getCounter3().toString())

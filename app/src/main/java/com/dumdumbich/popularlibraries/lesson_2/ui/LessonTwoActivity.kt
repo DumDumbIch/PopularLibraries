@@ -20,9 +20,6 @@ class LessonTwoActivity : MvpAppCompatActivity(), ICountersView {
         super.onCreate(savedInstanceState)
         ui = ActivityLessonTwoBinding.inflate(LayoutInflater.from(this))
         setContentView(ui.root)
-        if (savedInstanceState == null) {
-            presenter.initCounters()
-        }
         initClickListeners()
     }
 
