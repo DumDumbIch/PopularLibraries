@@ -1,9 +1,9 @@
-package com.dumdumbich.popularlibraries.lesson_1.presenter
+package com.dumdumbich.popularlibraries.lesson_2.presenter
 
-import com.dumdumbich.popularlibraries.lesson_1.model.CountersModel
-import com.dumdumbich.popularlibraries.lesson_1.view.ICountersView
+import com.dumdumbich.popularlibraries.lesson_2.model.CountersModel
+import com.dumdumbich.popularlibraries.lesson_2.view.ICountersView
 
-class MainPresenter(val view: ICountersView) {
+class LessonTwoPresenter(val view: ICountersView) {
 
     private val model = CountersModel()
 
