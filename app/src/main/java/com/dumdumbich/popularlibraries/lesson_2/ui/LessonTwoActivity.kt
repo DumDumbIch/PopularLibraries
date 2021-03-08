@@ -1,20 +1,20 @@
-package com.dumdumbich.popularlibraries.lesson_1.ui
+package com.dumdumbich.popularlibraries.lesson_2.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import com.dumdumbich.popularlibraries.databinding.ActivityMainBinding
-import com.dumdumbich.popularlibraries.lesson_1.presenter.MainPresenter
-import com.dumdumbich.popularlibraries.lesson_1.view.ICountersView
+import com.dumdumbich.popularlibraries.databinding.ActivityLessonTwoBinding
+import com.dumdumbich.popularlibraries.lesson_2.presenter.LessonTwoPresenter
+import com.dumdumbich.popularlibraries.lesson_2.view.ICountersView
 
-class MainActivity : AppCompatActivity(), ICountersView {
+class LessonTwoActivity : AppCompatActivity(), ICountersView {
 
-    private lateinit var ui: ActivityMainBinding
-    private val presenter = MainPresenter(view = this)
+    private lateinit var ui: ActivityLessonTwoBinding
+    private val presenter = LessonTwoPresenter(view = this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        ui = ActivityLessonTwoBinding.inflate(LayoutInflater.from(this))
         setContentView(ui.root)
         initView()
     }
