@@ -20,27 +20,13 @@ class LessonTwoActivity : MvpAppCompatActivity(), ICountersView {
         super.onCreate(savedInstanceState)
         ui = ActivityLessonTwoBinding.inflate(LayoutInflater.from(this))
         setContentView(ui.root)
-        initView()
+        if (savedInstanceState == null) {
+            presenter.initCounters()
+        }
+        initClickListeners()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt("COUNTER_1", presenter.getCounter1())
-        outState.putInt("COUNTER_2", presenter.getCounter2())
-        outState.putInt("COUNTER_3", presenter.getCounter3())
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        presenter.setCounter1(savedInstanceState.getInt("COUNTER_1"))
-        presenter.setCounter2(savedInstanceState.getInt("COUNTER_2"))
-        presenter.setCounter3(savedInstanceState.getInt("COUNTER_3"))
-        presenter.updateCounters()
-    }
-
-    private fun initView() {
-        presenter.clearCounters()
-        presenter.updateCounters()
+    private fun initClickListeners() {
         ui.btnCounter1.setOnClickListener { presenter.clickCounter1() }
         ui.btnCounter2.setOnClickListener { presenter.clickCounter2() }
         ui.btnCounter3.setOnClickListener { presenter.clickCounter3() }
