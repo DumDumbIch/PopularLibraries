@@ -2,15 +2,19 @@ package com.dumdumbich.popularlibraries.lesson_2.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.appcompat.app.AppCompatActivity
 import com.dumdumbich.popularlibraries.databinding.ActivityLessonTwoBinding
+import com.dumdumbich.popularlibraries.lesson_2.model.CountersModel
 import com.dumdumbich.popularlibraries.lesson_2.presenter.LessonTwoPresenter
 import com.dumdumbich.popularlibraries.lesson_2.view.ICountersView
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
-class LessonTwoActivity : AppCompatActivity(), ICountersView {
+class LessonTwoActivity : MvpAppCompatActivity(), ICountersView {
 
     private lateinit var ui: ActivityLessonTwoBinding
-    private val presenter = LessonTwoPresenter(view = this)
+    private val presenter by moxyPresenter {
+        LessonTwoPresenter(CountersModel())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
