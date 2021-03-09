@@ -2,38 +2,48 @@ package com.dumdumbich.popularlibraries.lesson_2.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.dumdumbich.popularlibraries.R
 import com.dumdumbich.popularlibraries.databinding.ActivityMainBinding
-import com.dumdumbich.popularlibraries.lesson_2.model.GitHubUsersRepo
-import com.dumdumbich.popularlibraries.lesson_2.presenter.UsersPresenter
-import com.dumdumbich.popularlibraries.lesson_2.view.IUsersView
+import com.dumdumbich.popularlibraries.lesson_2.navigation.AndroidScreens
+import com.dumdumbich.popularlibraries.lesson_2.presenter.MainPresenter
+import com.dumdumbich.popularlibraries.lesson_2.view.IMainView
+import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
-class MainActivity : MvpAppCompatActivity(), IUsersView {
+class MainActivity : MvpAppCompatActivity(), IMainView {
+
+    private val navigator = AppNavigator(this, R.id.container)
 
     private lateinit var ui: ActivityMainBinding
     private val presenter by moxyPresenter {
-        UsersPresenter(GitHubUsersRepo())
+        MainPresenter(App.instance.router, AndroidScreens())
     }
-
-    private lateinit var adapter: UsersRVAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ui = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(ui.root)
-
     }
 
-    override fun init() {
-        ui.rvUsers.layoutManager = LinearLayoutManager(this)
-        adapter = UsersRVAdapter(presenter.usersListPresenter)
-        ui.rvUsers.adapter = adapter
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        App.instance.navigatorHolder.setNavigator(navigator)
     }
 
-    override fun updateList() {
-        adapter.notifyDataSetChanged()
+    override fun onPause() {
+        super.onPause()
+        App.instance.navigatorHolder.removeNavigator()
     }
+
+    override fun onBackPressed() {
+        supportFragmentManager.fragments.forEach {
+            if(it is IBackClickListener && it.isBackPressed()){
+                return
+            }
+        }
+        presenter.backClicked()
+    }
+
 }

@@ -5,9 +5,10 @@ import com.dumdumbich.popularlibraries.lesson_2.model.entity.GitHubUser
 import com.dumdumbich.popularlibraries.lesson_2.presenter.list.IUsersListPresenter
 import com.dumdumbich.popularlibraries.lesson_2.view.IUsersView
 import com.dumdumbich.popularlibraries.lesson_2.view.list.IUserItemView
+import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
-class UsersPresenter(private val usersRepo: GitHubUsersRepo) : MvpPresenter<IUsersView>() {
+class UsersPresenter(private val usersRepo: GitHubUsersRepo, private val router: Router) : MvpPresenter<IUsersView>() {
 
     class UsersListPresenter : IUsersListPresenter {
 
@@ -37,6 +38,11 @@ class UsersPresenter(private val usersRepo: GitHubUsersRepo) : MvpPresenter<IUse
         usersListPresenter.users.clear()
         usersListPresenter.users.addAll(users)
         viewState.updateList()
+    }
+
+    fun backClick(): Boolean {
+        router.exit()
+        return true
     }
 
 }
