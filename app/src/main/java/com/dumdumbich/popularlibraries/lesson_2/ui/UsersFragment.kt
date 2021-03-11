@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dumdumbich.popularlibraries.databinding.FragmentUsersBinding
 import com.dumdumbich.popularlibraries.lesson_2.model.GitHubUsersRepo
+import com.dumdumbich.popularlibraries.lesson_2.navigation.AndroidScreens
 import com.dumdumbich.popularlibraries.lesson_2.presenter.UsersPresenter
 import com.dumdumbich.popularlibraries.lesson_2.view.IUsersView
 import moxy.MvpAppCompatFragment
@@ -18,7 +19,7 @@ class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackClickListener {
     }
 
     private val presenter by moxyPresenter {
-        UsersPresenter(GitHubUsersRepo(), App.instance.router)
+        UsersPresenter(GitHubUsersRepo(), App.instance.router, AndroidScreens())
     }
 
     private var ui: FragmentUsersBinding? = null
@@ -48,6 +49,5 @@ class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackClickListener {
     }
 
     override fun isBackPressed() = presenter.backClick()
-
 
 }

@@ -2,13 +2,18 @@ package com.dumdumbich.popularlibraries.lesson_2.presenter
 
 import com.dumdumbich.popularlibraries.lesson_2.model.GitHubUsersRepo
 import com.dumdumbich.popularlibraries.lesson_2.model.entity.GitHubUser
+import com.dumdumbich.popularlibraries.lesson_2.navigation.IScreens
 import com.dumdumbich.popularlibraries.lesson_2.presenter.list.IUsersListPresenter
 import com.dumdumbich.popularlibraries.lesson_2.view.IUsersView
 import com.dumdumbich.popularlibraries.lesson_2.view.list.IUserItemView
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
-class UsersPresenter(private val usersRepo: GitHubUsersRepo, private val router: Router) : MvpPresenter<IUsersView>() {
+class UsersPresenter(
+    private val usersRepo: GitHubUsersRepo,
+    private val router: Router,
+    private val screens: IScreens
+) : MvpPresenter<IUsersView>() {
 
     class UsersListPresenter : IUsersListPresenter {
 
@@ -31,6 +36,10 @@ class UsersPresenter(private val usersRepo: GitHubUsersRepo, private val router:
         super.onFirstViewAttach()
         viewState.init()
         loadData()
+        usersListPresenter.itemClickListener = { view ->
+            val user = usersListPresenter.users[view.pos]
+            router.navigateTo(screens.user(user))
+        }
     }
 
     private fun loadData() {
