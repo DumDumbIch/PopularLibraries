@@ -3,7 +3,7 @@ package com.dumdumbich.popularlibraries.lesson_1.presenter
 import com.dumdumbich.popularlibraries.lesson_1.model.CountersModel
 import com.dumdumbich.popularlibraries.lesson_1.view.ICountersView
 
-class MainPresenter(val view: ICountersView) {
+class LessonOnePresenter(val view: ICountersView) {
 
     private val model = CountersModel()
 
