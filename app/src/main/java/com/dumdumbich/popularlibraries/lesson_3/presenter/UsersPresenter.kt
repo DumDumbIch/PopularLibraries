@@ -43,9 +43,15 @@ class UsersPresenter(
     }
 
     private fun loadData() {
-        val users = usersRepo.getUsers()
         usersListPresenter.users.clear()
-        usersListPresenter.users.addAll(users)
+        usersRepo.getUsers().subscribe(
+            { user ->
+                usersListPresenter.users.addAll(user)
+            },
+            { error ->
+                error.printStackTrace()
+            }
+        )
         viewState.updateList()
     }
 
@@ -53,5 +59,4 @@ class UsersPresenter(
         router.exit()
         return true
     }
-
 }
