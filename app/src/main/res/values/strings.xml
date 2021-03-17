@@ -4,4 +4,5 @@
     <string name="counter_two">Счетчик 2</string>
     <string name="counter_three">Счетчик 3</string>
     <string name="title_activity_lesson_two">LessonTwoActivity</string>
+    <string name="title_activity_lesson_three">Activity Lesson Three</string>
 </resources>

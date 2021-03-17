@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PopularLibraries"
-        android:name=".lesson_2.ui.App">
+        android:name=".lesson_3.ui.App">
         <activity
-            android:name=".lesson_2.ui.MainActivity"
-            android:label="@string/title_activity_lesson_two">
+            android:name=".lesson_3.ui.MainActivity"
+            android:label="@string/title_activity_lesson_three">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".lesson_1.ui.LessonOneActivity" />
     </application>
 
 </manifest>
