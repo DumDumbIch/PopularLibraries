@@ -1,6 +1,8 @@
 package com.dumdumbich.popularlibraries.lesson_3.model
 
 import com.dumdumbich.popularlibraries.lesson_3.model.entity.GitHubUser
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class GitHubUsersRepo {
 
@@ -14,6 +16,6 @@ class GitHubUsersRepo {
         GitHubUser("login_7")
     )
 
-    fun getUsers() = users
+    fun getUsers(): Observable<GitHubUser> = Observable.fromIterable(users)
 
 }
