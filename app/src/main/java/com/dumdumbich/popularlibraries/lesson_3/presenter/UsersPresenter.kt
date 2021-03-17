@@ -46,7 +46,7 @@ class UsersPresenter(
         usersListPresenter.users.clear()
         usersRepo.getUsers().subscribe(
             { user ->
-                usersListPresenter.users.add(user)
+                usersListPresenter.users.addAll(user)
             },
             { error ->
                 error.printStackTrace()
